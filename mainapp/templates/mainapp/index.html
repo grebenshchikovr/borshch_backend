@@ -11,6 +11,7 @@
         <h2>{{ recipe.name }}</h2>
         <p>{{ recipe.cuisine.name }} кухня </p>
         <p>{{ recipe.description }}</p>
+        <p><a class="btn btn-primary" href="{% url 'recipes:recipe' recipe.id %}">Посмотреть рецепт</a></p>
     {% endfor %}
 
 </body>

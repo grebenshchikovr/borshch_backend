@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title> {{ title }}</title>
 </head>
 <body>
-
+    <h1>{{ recipe.name }}</h1>
+    <h2>{{ recipe.cuisine.name }} кухня</h2>
+    {{ recipe.description }}
+    {% for composition in compositions %}
+        <p>{{ composition.ingredient.name }} - {{ composition.quantity }} {{ composition.ingredient.unit.short_name }} </p>
+    {% endfor %}
 </body>
 </html>
