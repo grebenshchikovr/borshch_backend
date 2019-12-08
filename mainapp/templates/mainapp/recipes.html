@@ -5,6 +5,20 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    <div class="header">
+        {% block header %}
+            {% include 'mainapp/includes/inc_cuisine_menu.html' %}
+        {% endblock %}
+    </div>
+    <h2>
+        Кухня: "{{ cuisine.name|title }}"
+    </h2>
 
+    {% for recipe in recipes %}
+        <a href="{% url 'recipes:recipe' recipe.id %}">
+            <h4>{{ recipe.name }}</h4>
+            <p>{{ recipe.description }}</p>
+        </a>
+    {% endfor %}
 </body>
 </html>

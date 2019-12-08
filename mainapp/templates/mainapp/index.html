@@ -6,6 +6,13 @@
     <title>{{ title }}</title>
 </head>
 <body>
+    <div class="header">
+        {% block header %}
+            {% include 'mainapp/includes/inc_cuisine_menu.html' %}
+        {% endblock %}
+    </div>
+
+    <h1>Последний рецепт</h1>
 
     {% for recipe in recipes %}
         <h2>{{ recipe.name }}</h2>

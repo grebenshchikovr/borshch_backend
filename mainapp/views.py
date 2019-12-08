@@ -5,25 +5,29 @@ from django.shortcuts import get_object_or_404
 def main(request):
     title = 'главная'
 
-    recipes = Recipe.objects.all()
+    recipes = Recipe.objects.all()[:1]
+    cuisines = Cuisine.objects.all()
 
-    content = {'title': title, 'recipes': recipes,}
+    content = {'title': title, 'recipes': recipes, 'cuisines': cuisines}
     return render(request, 'mainapp/index.html', content)
 
 def recipes(request, pk=None):
-    title = 'продукты'
-
+    title = 'список рцептов'
     recipes = Recipe.objects.all()
-    if pk != 0:
-        cuisine = get_object_or_404(Cuisine, pk=pk)
-        recipes = recipes.filter(cuisine__pk=pk).order_by('name')
+    cuisine = None
+
+    if pk:
+            cuisine = get_object_or_404(Cuisine, pk=pk)
+            recipes = recipes.filter(cuisine=cuisine)
+
 
     content = {'title': title,
                'recipes': recipes,
-               'cuisine': Cuisine.objects.all(),
-
-    }
+               'cuisines': Cuisine.objects.all(),
+               'cuisine': cuisine,
+               }
     return render(request, 'mainapp/recipes.html', content)
+
 
 def recipe(request, pk):
     title = 'просмотр рецепта'

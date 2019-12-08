@@ -1,0 +1,23 @@
+<hr>
+<ul>
+  <li>
+    <a href="{% url 'recipes:cuisine' 0 %}"
+       class="{% if request.resolver_match.kwargs.pk == '0' %}
+                active
+              {% endif %}">
+      Все кухни
+    </a>
+
+  </li>
+  {% for cuisine in cuisines %}
+    <li>
+      <a href="{% url 'recipes:cuisine' cuisine.pk %}"
+         class="{% if request.resolver_match.kwargs.pk|add:'0' == cuisine.pk %}
+                  active
+                {% endif %}">
+        {{ cuisine.name }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+<hr>
