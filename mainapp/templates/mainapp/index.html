@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
+{% extends 'mainapp/base.html' %}
+
+{% block title %}
     <title>{{ title }}</title>
-</head>
-<body>
-    <div class="header">
-        {% block header %}
-            {% include 'mainapp/includes/inc_cuisine_menu.html' %}
-        {% endblock %}
-    </div>
+{% endblock %}
 
-    <h1>Последний рецепт</h1>
-
+{% block content %}
+<div class="container">
     {% for recipe in recipes %}
-        <h2>{{ recipe.name }}</h2>
-        <p>{{ recipe.cuisine.name }} кухня </p>
-        <p>{{ recipe.description }}</p>
-        <p><a class="btn btn-primary" href="{% url 'recipes:recipe' recipe.id %}">Посмотреть рецепт</a></p>
+        <div class="card text-center">
+            <div class="card-header">
+                <img src="/media/{{ recipe.image }}" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <p class="card-text">{{ recipe.description }}</p>
+                <a href="{% url 'recipes:recipe' recipe.id %}" class="btn btn-primary">Смотреть рецепт</a>
+            </div>
+        </div>
+    <p></p>
     {% endfor %}
-
-</body>
-</html>
+</div>
+{% endblock %}

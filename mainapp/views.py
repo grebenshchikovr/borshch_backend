@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 def main(request):
     title = 'главная'
 
-    recipes = Recipe.objects.all()[:1]
+    recipes = Recipe.objects.all()
     cuisines = Cuisine.objects.all()
 
     content = {'title': title, 'recipes': recipes, 'cuisines': cuisines}
@@ -24,7 +24,6 @@ def recipes(request, pk=None):
     content = {'title': title,
                'recipes': recipes,
                'cuisines': Cuisine.objects.all(),
-               'cuisine': cuisine,
                }
     return render(request, 'mainapp/recipes.html', content)
 

@@ -1,15 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> {{ title }}</title>
-</head>
-<body>
-    <h1>{{ recipe.name }}</h1>
-    <h2>{{ recipe.cuisine.name }} кухня</h2>
-    {{ recipe.description }}
-    {% for composition in compositions %}
-        <p>{{ composition.ingredient.name }} - {{ composition.quantity }} {{ composition.ingredient.unit.short_name }} </p>
-    {% endfor %}
-</body>
-</html>
+{% extends 'mainapp/base.html' %}
+
+{% block title %}
+    <title>{{ title }}</title>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                <img src="/media/{{ recipe.image }}" class="card-img-top" alt="...">
+            </div>
+            <div class="card-body">
+
+                <h5 class="card-title">{{ recipe.name }}</h5>
+                <p class="card-text">{{ recipe.cuisine.name }} кухня</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ recipe.description }}</li>
+                    <li class="list-group-item">
+
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Ингредиент</th>
+                                    <th scope="col">Количество</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for composition in compositions %}
+                                <tr>
+                                    <td>{{ composition.ingredient.name }}</td>
+                                    <td>{{ composition.quantity }}</td>
+                                    <td>{{ composition.ingredient.unit.short_name }} </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
+{% endblock %}
+
+
