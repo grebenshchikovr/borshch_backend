@@ -17,12 +17,15 @@
                 <h5 class="card-title">{{ recipe.name }}</h5>
                 <p class="card-text">{{ recipe.cuisine.name }} кухня</p>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ recipe.description }}</li>
+                    <li class="list-group-item">
+                        {{ recipe.description }}
+                    </li>
                     <li class="list-group-item">
 
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th scope="col"></th>
                                     <th scope="col">Ингредиент</th>
                                     <th scope="col">Количество</th>
                                     <th scope="col"></th>
@@ -31,6 +34,7 @@
                             <tbody>
                             {% for composition in compositions %}
                                 <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
                                     <td>{{ composition.ingredient.name }}</td>
                                     <td>{{ composition.quantity }}</td>
                                     <td>{{ composition.ingredient.unit.short_name }} </td>
@@ -38,6 +42,9 @@
                             {% endfor %}
                             </tbody>
                         </table>
+                    </li>
+                    <li class="list-group-item">
+                        <p>{{ recipe.cooking }}</p>
                     </li>
                 </ul>
             </div>
