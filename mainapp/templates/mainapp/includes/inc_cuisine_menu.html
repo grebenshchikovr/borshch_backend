@@ -2,17 +2,17 @@
 <ul class="nav nav-tabs justify-content-center">
   <li class="nav-item">
     <a href="{% url 'recipes:index' %}"
-       class="nav-link {% if request.resolver_match.kwargs.pk is None %}
-                active
-              {% endif %}">
+       class="nav-link {% if request.resolver_match.kwargs.cuisine == None %}
+                  active
+                {% endif %}">
       Все кухни
     </a>
 
   </li>
-  {% for cuisine in cuisines %}
+  {% for cuisine in cuisine_list %}
     <li class="nav-item">
-      <a href="{% url 'recipes:cuisine' cuisine.pk %}"
-         class="nav-link {% if request.resolver_match.kwargs.pk|add:'0' == cuisine.pk %}
+      <a href="{% url 'recipes:cuisine' cuisine.name %}"
+         class="nav-link {% if request.resolver_match.kwargs.cuisine == cuisine.name %}
                   active
                 {% endif %}">
         {{ cuisine.name }}

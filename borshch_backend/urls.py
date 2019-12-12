@@ -20,10 +20,11 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 
 import mainapp.views as mainapp
+from mainapp.views import MainView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', mainapp.main, name='main'),
+    path('', MainView.as_view(), name='main'),
     path('recipes/', include('mainapp.urls', namespace='recipes')),
     path('api/v1/', include('api.urls', namespace='api')),
 ]
