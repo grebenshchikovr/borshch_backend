@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            {% for composition in compositions %}
+                            {% for composition in composition_list %}
                                 <tr>
                                     <th scope="row">{{ forloop.counter }}</th>
                                     <td>{{ composition.ingredient.name }}</td>
