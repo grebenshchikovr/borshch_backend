@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Пельмени",
+        "description": "Божественное блюдо!",
+        "cuisine": "Русская",
+        "cooking": "Варить 15 минут на медленном огне",
+        "image": "recipe_photos/a3d3c090359bc6b17d458c975db66d18.jpg"
+    },
+
+    {
+          "name": "Равиолли",
+          "description": "пидорские пельмени",
+          "cuisine": "Итальянская",
+          "cooking": "Варить после закипания воды 20 минут с открытой крышкой",
+          "image": "recipe_photos/ravioli_4.jpg"
+    }
+]

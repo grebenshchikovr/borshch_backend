@@ -1,0 +1,37 @@
+[
+    {
+        "recipe": "Пельмени",
+        "ingredient": "Лук",
+        "quantity": 1
+    },
+
+    {
+        "recipe": "Пельмени",
+        "ingredient": "мука",
+        "quantity": 2
+    },
+
+    {
+          "recipe": "Пельмени",
+          "ingredient": "молоко",
+          "quantity": 200
+    },
+
+    {
+          "recipe": "Равиолли",
+          "ingredient": "Лук",
+          "quantity": 2
+    },
+
+    {
+          "recipe": "Равиолли",
+          "ingredient": "мука",
+          "quantity": 3
+    },
+
+    {
+          "recipe": "Равиолли",
+          "ingredient": "молоко",
+          "quantity": 100
+    }
+]
