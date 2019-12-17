@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from mainapp.models import Cuisine, Unit, Ingredient, Recipe, Composition
 from django.contrib.auth.models import User
+from authapp.models import BorshchUser
 
 import json, os
 
@@ -67,3 +68,8 @@ class Command(BaseCommand):
 
             new_composition = Composition(**composition)
             new_composition.save()
+
+        # Создаем суперпользователя при помощи менеджера модели
+        BorshchUser.objects.all().delete()
+        BorshchUser.objects.create_superuser('geekbrains', 'geekbrains@geekshop.local', 'geekbrains')
+        BorshchUser.objects.create_user('ivan', 'ivan@geekshop.local', 'ivan')

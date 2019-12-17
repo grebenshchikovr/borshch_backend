@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
+    'authapp',
+    'myrecipeapp',
     'mainapp',
     'rest_framework',
     'api',
@@ -88,7 +90,7 @@ DATABASES = {
     }
 }
 
-
+AUTH_USER_MODEL = 'authapp.BorshchUser'
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
