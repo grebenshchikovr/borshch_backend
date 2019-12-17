@@ -37,11 +37,10 @@ class RecipeDetailView(DetailView):
     context_object_name = 'recipe'
     template_name = 'mainapp/recipe.html'
 
-
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-        context['composition_list'] = Composition.objects.all()
+        context['composition_list'] = Composition.objects.filter(recipe=self.kwargs['pk'])
         context['cuisine_list'] = Cuisine.objects.all()
         return context
 
