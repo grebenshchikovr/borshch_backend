@@ -33,7 +33,10 @@
                             {% for my_recipe in my_recipe_list %}
                                 <tr>
                                     <th scope="row">{{ forloop.counter }}</th>
-                                    <td>{{ my_recipe.recipe.name }}</td>
+                                    <td><a href="{% url 'recipes:recipe' my_recipe.recipe.pk %}">
+                                            {{ my_recipe.recipe.name }}
+                                        </a>
+                                    </td>
                                 </tr>
                             {% endfor %}
                             </tbody>
