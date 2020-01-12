@@ -1,4 +1,6 @@
 {% extends 'mainapp/base.html' %}
+{% load my_tags %}
+
 
 {% block title %}
     <title>{{ title }}</title>
@@ -10,11 +12,12 @@
 <div class="container">
         <div class="card text-center">
             <div class="card-header">
-                <img src="/media/{{ recipe.image }}" class="card-img-top" alt="...">
+                <img src="{{ recipe.image|media_folder_recipes }}" class="card-img-top" alt="...">
+
             </div>
             <div class="card-body">
 
-                <h5 class="card-title">{{ recipe.name }}</h5>
+                <h5 class="card-title">{{ recipe.name }} {% include 'mainapp/includes/inc_to_favorite.html' %}</h5>
                 <p class="card-text">{{ recipe.cuisine.name }} кухня</p>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">

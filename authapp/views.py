@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect
+from django.shortcuts import render, HttpResponseRedirect, redirect, get_object_or_404
 from authapp.forms import BorshchUserLoginForm, BorshchUserRegisterForm
 from authapp.models import BorshchUser
 from myrecipeapp.models import MyRecipe
+from mainapp.models import Cuisine, Recipe
+from mainapp.views import RecipeList
 from django.contrib import auth
 from django.urls import reverse
 from django.views.generic import DetailView
@@ -54,4 +56,20 @@ class BorshchUserDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['my_recipe_list'] = MyRecipe.objects.filter(borshchuser=self.kwargs['pk'])
+        context['cuisine_list'] = Cuisine.objects.all()
+        return context
+
+
+class UserCuisineRecipeList(RecipeList):
+
+    def get_queryset(self):
+        self.cuisine = get_object_or_404(Cuisine, name=self.kwargs['cuisine'])
+        return Recipe.objects.filter(myrecipe__borshchuser=self.kwargs['pk'], cuisine=self.cuisine)
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the cuisines
+        context['cuisine_list'] = Cuisine.objects.all()
+        context['cuisine'] = self.cuisine
         return context

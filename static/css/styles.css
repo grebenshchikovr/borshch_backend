@@ -3,3 +3,13 @@
 	width: 500px;
 	margin: 0 auto;
 }
+
+.to_fav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.to_fav a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
