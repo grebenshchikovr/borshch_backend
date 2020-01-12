@@ -4,34 +4,113 @@
         "ingredient": "Лук",
         "quantity": 1
     },
-
     {
         "recipe": "Пельмени",
-        "ingredient": "мука",
-        "quantity": 2
+        "ingredient": "Мука",
+        "quantity": 450
+    },
+    {
+          "recipe": "Пельмени",
+          "ingredient": "Вода",
+          "quantity": 50
+    },
+    {
+          "recipe": "Пельмени",
+          "ingredient": "Фарш",
+          "quantity": 450
+    },
+    {
+          "recipe": "Пельмени",
+          "ingredient": "Яйцо",
+          "quantity": 4
+    },
+    {
+          "recipe": "Пельмени",
+          "ingredient": "Соль",
+          "quantity": 1
+    },
+    {
+          "recipe": "Пельмени",
+          "ingredient": "Масло растительное",
+          "quantity": 1
     },
 
     {
-          "recipe": "Пельмени",
-          "ingredient": "молоко",
-          "quantity": 200
+          "recipe": "Равиолли",
+          "ingredient": "Мука",
+          "quantity": 400
     },
 
+    {
+          "recipe": "Равиолли",
+          "ingredient": "Яйцо",
+          "quantity": 1
+    },
+
+
+    {
+          "recipe": "Равиолли",
+          "ingredient": "Соль",
+          "quantity": 1
+    },
+    {
+          "recipe": "Равиолли",
+          "ingredient": "Фарш",
+          "quantity": 300
+    },
     {
           "recipe": "Равиолли",
           "ingredient": "Лук",
-          "quantity": 2
+          "quantity": 1
     },
-
     {
           "recipe": "Равиолли",
-          "ingredient": "мука",
+          "ingredient": "Сливочное масло",
+          "quantity": 30
+    },
+    {
+          "recipe": "Равиолли",
+          "ingredient": "Пармезан",
+          "quantity": 100
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Сметана",
+          "quantity": 200
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Говядина",
+          "quantity": 1000
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Капуста квашенная",
+          "quantity": 1400
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Лук",
+          "quantity": 1
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Морковь",
+          "quantity": 1
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Картофель",
           "quantity": 3
     },
-
     {
-          "recipe": "Равиолли",
-          "ingredient": "молоко",
-          "quantity": 100
+          "recipe": "Щи томленые",
+          "ingredient": "Зелень",
+          "quantity": 1
+    },
+    {
+          "recipe": "Щи томленые",
+          "ingredient": "Вода",
+          "quantity": 3000
     }
 ]
