@@ -27,7 +27,7 @@ urlpatterns = [
     path('', MainView.as_view(), name='main'),
     path('recipes/', include('mainapp.urls', namespace='recipes')),
     path('auth/', include('authapp.urls', namespace='auth')),
-    #path('my/', include('myrecipeapp.urls', namespace='my')),
+    path('my/', include('myrecipeapp.urls', namespace='my')),
     path('api/v1/', include('api.urls', namespace='api')),
 ]
 

@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', authapp.LogIn.as_view(), name='login'),
     path('logout/', authapp.LogOut.as_view(), name='logout'),
     path('<int:pk>', authapp.BorshchUserDetailView.as_view(), name='BorshchUser'),
+    path('<int:pk>/<cuisine>/', authapp.UserCuisineRecipeList.as_view(), name='Usercuisine'),
 ]

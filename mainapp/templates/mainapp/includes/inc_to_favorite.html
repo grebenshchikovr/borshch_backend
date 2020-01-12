@@ -1,0 +1,21 @@
+{% load my_tags %}
+
+{% if user.is_authenticated %}
+    {% if recipe.pk|is_in_fav:request.user.id %}
+
+                 <span class="badge badge-danger">
+                     <div class="to_fav">
+                         <a href ="{% url 'my:remove' recipe.pk %}">Из избранного</a>
+                     </div>
+                 </span>
+
+    {% else %}
+
+                 <span class="badge badge-secondary">
+                     <div class="to_fav">
+                         <a href ="{% url 'my:add' recipe.pk %}">В избранное</a>
+                     </div>
+                 </span>
+
+    {% endif %}
+{% endif %}

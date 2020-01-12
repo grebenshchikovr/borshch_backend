@@ -1,5 +1,11 @@
-{% if user.is_authenticated %}
-<p>Welcome, <a href="{% url 'auth:BorshchUser' user.pk %}">{{ user.username }}</a> . Thanks for logging in. <a href="{% url 'auth:logout'%}">logout</a> .</p>
-{% else %}
-<p>Welcome, new user. Please <a href="{% url 'auth:login' %}">log in</a> or <a href="{% url 'auth:register' %}">register</a>.</p>
-{% endif %}
+
+<div class="container">
+    <p>
+        {% if user.is_authenticated %}
+            Welcome, <a href="{% url 'auth:BorshchUser' user.pk %}">{{ user.username }}</a>.
+            Thanks for logging in. <a href="{% url 'auth:logout'%}">logout</a>.
+        {% else %}
+            Welcome, new user. Please <a href="{% url 'auth:login' %}">log in</a> or <a href="{% url 'auth:register' %}">register</a>.
+        {% endif %}
+    </p>
+</div>

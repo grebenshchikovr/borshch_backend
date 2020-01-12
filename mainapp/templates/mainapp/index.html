@@ -1,4 +1,5 @@
 {% extends 'mainapp/base.html' %}
+{% load my_tags %}
 
 {% block title %}
     <title>{{ title }}</title>
@@ -11,7 +12,7 @@
     {% for recipe in recipes %}
         <div class="card text-center">
             <div class="card-header">
-                <img src="/media/{{ recipe.image }}" class="card-img-top" alt="...">
+                <img src="{{ recipe.image|media_folder_recipes }}" class="card-img-top" alt="...">
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ recipe.name }}</h5>
