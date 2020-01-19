@@ -1,0 +1,20 @@
+{% load static %}
+<div class="borshch-menu">
+    <ul>
+        <li>
+            <a href="{% url 'main' %}">Главная</a>
+        </li>
+        <li>
+            <a href="{% url 'recipes:index' %}">Рецепты</a>
+        </li>
+        <li>
+            <img src="{% static 'img/logo.png' %}" height="120px">
+        </li>
+        <li>
+            <a href="#">О проекте</a>
+        </li>
+        <li>
+            <a href="#">Контакты</a>
+        </li>
+    </ul>
+</div>

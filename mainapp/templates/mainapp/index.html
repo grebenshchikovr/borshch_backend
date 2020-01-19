@@ -10,17 +10,25 @@
     <h3>Последний добавленный рецепт:</h3>
     <br>
     {% for recipe in recipes %}
-        <div class="card text-center">
-            <div class="card-header">
-                <img src="{{ recipe.image|media_folder_recipes }}" class="card-img-top" alt="...">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ recipe.name }}</h5>
-                <p class="card-text">{{ recipe.description }}</p>
-                <a href="{% url 'recipes:recipe' recipe.id %}" class="btn btn-primary">Смотреть рецепт</a>
-            </div>
+        <div class="recipe_card">
+            <table>
+                <tr>
+                    <td rowspan="2" class="recipe_img">
+                        <img src="{{ recipe.image|media_folder_recipes }}">
+                    </td>
+                    <td class="recipe_spacer"></td>
+                    <td class="recipe_tittle">{{ recipe.name }} {% include 'mainapp/includes/inc_to_favorite.html' %}</td>
+                    <td class="recipe_spacer"></td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="recipe_desc">
+
+                        <p>{{ recipe.description }}</p>
+                        <a href="{% url 'recipes:recipe' recipe.pk %}" class="btn btn-primary">Смотреть рецепт</a>
+                    </td>
+                </tr>
+            </table>
         </div>
-    <p></p>
     {% endfor %}
 </div>
 {% endblock %}
