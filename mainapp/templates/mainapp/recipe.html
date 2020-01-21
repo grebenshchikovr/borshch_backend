@@ -18,6 +18,7 @@
             <div class="card-body">
 
                 <h5 class="card-title">{{ recipe.name }} {% include 'mainapp/includes/inc_to_favorite.html' %}</h5>
+                <p class="card-text">Время приготовления: {{ recipe.duration }} мин. Сложность: {{ recipe.level }}</p>
                 <p class="card-text">{{ recipe.cuisine.name }} кухня</p>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -46,9 +47,12 @@
                             </tbody>
                         </table>
                     </li>
+
+                    {% for cooking_step in cooking_step_list %}
                     <li class="list-group-item">
-                        <p>{{ recipe.cooking }}</p>
+                        <p>{{ cooking_step.cooking }}</p>
                     </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

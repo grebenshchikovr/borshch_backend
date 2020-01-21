@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from .models import Unit, Cuisine, Ingredient, Recipe, Composition
+from .models import Unit, Cuisine, Ingredient, Recipe, Composition, CookingStep
 from django.shortcuts import get_object_or_404
 
 
@@ -41,6 +41,7 @@ class RecipeDetailView(DetailView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         context['composition_list'] = Composition.objects.filter(recipe=self.kwargs['pk'])
+        context['cooking_step_list'] = CookingStep.objects.filter(recipe=self.kwargs['pk'])
         context['cuisine_list'] = Cuisine.objects.all()
         return context
 

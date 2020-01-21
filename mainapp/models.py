@@ -42,7 +42,8 @@ class Recipe(models.Model):
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE)
     name = models.CharField(verbose_name='название рецепта', max_length=255)
     description = models.TextField(verbose_name='описание', blank=True)
-    cooking = models.TextField(verbose_name='способ приготовления', blank=False)
+    level = models.IntegerField(verbose_name='сложность приготовления', default=1)
+    duration = models.IntegerField(verbose_name='время приготовления', default=15)
     image = models.ImageField(upload_to='recipe_photos', blank=True)
 
     def __str__(self):
@@ -59,3 +60,14 @@ class Composition(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.recipe.name, self.ingredient.name)
+
+class CookingStep(models.Model):
+    class Meta:
+        verbose_name = 'Шаг приготовления'
+        verbose_name_plural = 'Шаги приготовления'
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    cooking = models.TextField(verbose_name='шаг приготовления', blank=False)
+    image = models.ImageField(upload_to='cooking_step_photos', blank=True)
+
+    def __str__(self):
+        return self.recipe.name
