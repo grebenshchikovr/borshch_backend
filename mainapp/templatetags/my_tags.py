@@ -40,6 +40,41 @@ def is_in_fav(recipe_id, user_id):
     return myrecipe
 
 
+@register.filter(name='level_pic')
+def level_pic(level):
+    """
+    заменяет уровень сложности рецепта на его картинку
+    """
+
+    if level == 2:
+        level = 'adult'
+    elif level == 3:
+        level = 'chief'
+    else:
+        level = 'child'
+
+
+    return f'{settings.STATIC_URL}img/level_pic/{level}.png'
+
+
+@register.filter(name='duration_pic')
+def duration_pic(duration):
+    """
+    заменяет уровень сложности рецепта на его картинку
+    """
+
+    if duration <= 15:
+        duration = '15'
+    elif duration > 15 and duration <=30:
+        duration = '30'
+    elif duration > 30 and duration <= 60:
+        duration = '60'
+    else:
+        duration = 'gt_60'
+
+
+    return f'{settings.STATIC_URL}img/duration_pic/{duration}.png'
+
 """
 def collect_url(string):
     return re.sub(<.*>, WORKS, request.resolver_match.route, count=0)
