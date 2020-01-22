@@ -30,6 +30,18 @@ def media_folder_users(string):
 
     return f'{settings.MEDIA_URL}{string}'
 
+
+@register.filter(name='media_folder_cooking_step')
+def media_folder_media_folder_cooking_step(string):
+    """
+    Автоматически добавляет относительный URL-путь к медиафайлам шагов приготовления
+    """
+    if not string:
+        string = 'cooking_step_photos/default.png'
+
+    return f'{settings.MEDIA_URL}{string}'
+
+
 @register.filter(name='is_in_fav')
 def is_in_fav(recipe_id, user_id):
     """

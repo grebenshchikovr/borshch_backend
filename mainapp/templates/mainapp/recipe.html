@@ -52,6 +52,7 @@
 
                     {% for cooking_step in cooking_step_list %}
                     <li class="list-group-item">
+                        <p><img src="{{ cooking_step.image|media_folder_cooking_step }}" width="150"></p>
                         <p>{{ cooking_step.cooking }}</p>
                     </li>
                     {% endfor %}
