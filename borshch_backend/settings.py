@@ -27,9 +27,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '011i2#i@0dp+sx-^0_yx5is%48@%iuwjc8ze%=hi1nb=xslx(g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['borsh.185.195.24.222.xip.io', ]
 
 
 # Application definition
