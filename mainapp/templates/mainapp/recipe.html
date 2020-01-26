@@ -10,54 +10,70 @@
 
 {% block content %}
 <div class="container">
-        <div class="card text-center">
-            <div class="card-header">
-                <img src="{{ recipe.image|media_folder_recipes }}" class="card-img-top" alt="...">
+        <div class="full_recipe_card">
+            <table>
+                <tr>
+                    <td>
+                        <img src="{{ recipe.image|media_folder_recipes }}" class="card-img-top" alt="...">
+                    </td>
+                    <td>
+                        <h1>{{ recipe.name }}</h1>
+                        <h2>{{ recipe.cuisine.name }} кухня</h2>
+                        <p>{{ recipe.description }}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
 
-            </div>
-            <div class="card-body">
+                        <br>
 
-                <h5 class="card-title">{{ recipe.name }} {% include 'mainapp/includes/inc_to_favorite.html' %}</h5>
-                <p class="card-text">
-                    Время приготовления: <img src="{{ recipe.duration|duration_pic }}">
-                    Сложность: <img src="{{ recipe.level|level_pic }}"></p>
-                <p class="card-text">{{ recipe.cuisine.name }} кухня</p>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        {{ recipe.description }}
-                    </li>
-                    <li class="list-group-item">
+                    </td>
+                    <td class="full_recipe_icons">
+                        <img src="{{ recipe.duration|duration_pic }}">
+                        <img src="{{ recipe.level|level_pic }}">
+                        {% include 'mainapp/includes/inc_to_favorite.html' %}
+                    </td>
+                </tr>
+            </table>
 
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Ингредиент</th>
-                                    <th scope="col">Количество</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {% for composition in composition_list %}
-                                <tr>
-                                    <th scope="row">{{ forloop.counter }}</th>
-                                    <td>{{ composition.ingredient.name }}</td>
-                                    <td>{{ composition.quantity }}</td>
-                                    <td>{{ composition.ingredient.unit.short_name }} </td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
-                    </li>
 
-                    {% for cooking_step in cooking_step_list %}
-                    <li class="list-group-item">
-                        <p><img src="{{ cooking_step.image|media_folder_cooking_step }}" width="150"></p>
-                        <p>{{ cooking_step.cooking }}</p>
-                    </li>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Ингредиент</th>
+                        <th scope="col">Количество</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for composition in composition_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ composition.ingredient.name }}</td>
+                            <td>{{ composition.quantity }}</td>
+                            <td>{{ composition.ingredient.unit.short_name }} </td>
+                        </tr>
                     {% endfor %}
-                </ul>
-            </div>
+                </tbody>
+            </table>
+
+            <table class="table table-striped">
+                <thead>
+                    <th colspan="3">Способо приготовления:</th>
+                </thead>
+                <tbody border="2">
+                    {% for cooking_step in cooking_step_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td class="cookingstep"><img src="{{ cooking_step.image|media_folder_cooking_step }}"></td>
+                            <td>{{ cooking_step.cooking }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         </div>
 </div>
 {% endblock %}
