@@ -40,18 +40,7 @@
 
 .container {
 
-
 	margin: 0 auto;
-}
-
-.to_fav a {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.to_fav a:hover {
-    color: #ffffff;
-    text-decoration: none;
 }
 
 .recipe_card {
@@ -60,6 +49,10 @@
     border-radius: 30px;
     width: 1110px;
 
+}
+
+.recipe_card a:hover {
+    text-decoration: none;
 }
 
 .recipe_card table {
@@ -72,15 +65,16 @@
     align-items: center;
 }
 
-.recipe_img {
-    background: #FFE5A3;
-    border-radius: 30px 0px 0px 30px;
-}
 
 .recipe_card img {
     width: 310px;
     border-radius: 30px;
     margin: 20px;
+}
+
+.recipe_img {
+    background: #FFE5A3;
+    border-radius: 30px 0px 0px 30px;
 }
 
 .recipe_tittle {
@@ -106,4 +100,49 @@
 
 .recipe_spacer {
     width: 92px;
+}
+
+.recipe_spacer img {
+    width: 52px;
+    margin: 0 auto;
+}
+
+.full_recipe_card {
+    width: 1110px;
+    background: white;
+    font-family: Poiret One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    padding: 5px;
+}
+
+.full_recipe_card img {
+    width: 400px;
+    border-radius: 30px;
+    margin: 20px;
+}
+.full_recipe_card img {
+    width: 400px;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.full_recipe_icons img{
+    width: 52px;
+    margin: 0 auto;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.cookingstep img{
+    width: 200px;
+    border-radius: 30px;
+    margin: 20px;
+}
+
+.card-header img {
+    width: 300px;
+    border-radius: 30px;
+    margin: 20px;
 }
