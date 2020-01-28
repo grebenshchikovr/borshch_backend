@@ -6,7 +6,16 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
+    <form class="row">
+        {{ level_form.search }}
+        {{ level_form.filter_field }}
+        {{ duration_form.search }}
+        {{ duration_form.filter_field }}
+        <input type="submit" class="btn btn-default" value="Search">
+    </form>
+
     {% for recipe in recipes %}
         {% include 'mainapp/includes/inc_recipe_card.html' %}
     {% endfor %}

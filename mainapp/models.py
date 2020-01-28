@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 from django.conf import settings
 
 
@@ -71,3 +72,9 @@ class CookingStep(models.Model):
 
     def __str__(self):
         return self.recipe.name
+
+class SearchRecipeForm(ModelForm):
+    class Meta:
+        model = Recipe
+        fields = '__all__'
+

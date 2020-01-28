@@ -22,9 +22,15 @@
     text-align: center;
     color: #000000;
 }
+
 .borshch-menu ul {
     margin: 0 auto;
 }
+
+.borshch-menu li a {
+    color: black;
+}
+
 .borshch-menu li {
     padding-top: 38px;
 	float: center;
