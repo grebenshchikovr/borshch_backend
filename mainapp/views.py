@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Unit, Cuisine, Ingredient, Recipe, Composition, CookingStep
 from django.shortcuts import get_object_or_404
-from django.forms import forms, ChoiceField
+from django.forms import forms, ChoiceField, ModelChoiceField
 
 class MainView(ListView):
     model = Recipe
@@ -27,11 +27,15 @@ class RecipeList(ListView):
         query = self.request.GET.get('search')
         level = self.request.GET.get('level')
         duration = self.request.GET.get('duration')
+        ingredient = self.request.GET.get('ingredient')
+
+        #Фильтрация по сложности рецепта
         if level:
             list = Recipe.objects.filter(level=level)
         else:
             list = Recipe.objects.all()
 
+        #Фильтрация по длительности приготовления
         if not duration:
             pass
         elif int(duration) <= 15:
@@ -42,6 +46,13 @@ class RecipeList(ListView):
             list = list.filter(duration__range=(31, 60))
         elif int(duration) > 60:
             list = list.filter(duration__gte=60)
+
+        #Исключить рецепты с заданным ингредиентом
+        if ingredient:
+            for item in list:
+                compositions = Composition.objects.all().filter(ingredient__id=ingredient, recipe__id=item.id)
+                if compositions:
+                    list = list.exclude(name=item.name)
 
         return list
 
@@ -60,6 +71,11 @@ class RecipeList(ListView):
         context['duration_form'] = DurationFilterForm(initial={
             'search': self.request.GET.get('search', ''),
             'duration': self.request.GET.get('duration', ''),
+        })
+        # Add in a QuerySet form to exclude ingredient
+        context['ingredient_form'] = RemoveIngredientFilterForm(initial={
+            'search': self.request.GET.get('search', ''),
+            'ingredient': self.request.GET.get('ingredient', ''),
         })
         return context
 
@@ -101,7 +117,7 @@ class LevelFilterForm(forms.Form):
         ('3', 'Шеф-повар'),
     )
 
-    level = ChoiceField(choices=level, required=False)
+    level = ChoiceField(choices=level, label='level', required=False)
 
 class DurationFilterForm(forms.Form):
     FILTER_CHOICES = (
@@ -112,5 +128,8 @@ class DurationFilterForm(forms.Form):
         (61, '> часа'),
     )
 
-    duration = ChoiceField(choices=FILTER_CHOICES, required=False)
+    duration = ChoiceField(choices=FILTER_CHOICES, label='duration', required=False)
 
+class RemoveIngredientFilterForm(forms.Form):
+
+    ingredient = ModelChoiceField(queryset=Ingredient.objects.all(), required=False)
