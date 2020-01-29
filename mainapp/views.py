@@ -31,7 +31,7 @@ class RecipeList(ListView):
 
         #Фильтрация по сложности рецепта
         if level:
-            list = Recipe.objects.filter(level=level)
+            list = Recipe.objects.all().filter(level=level)
         else:
             list = Recipe.objects.all()
 
@@ -132,4 +132,4 @@ class DurationFilterForm(forms.Form):
 
 class RemoveIngredientFilterForm(forms.Form):
 
-    ingredient = ModelChoiceField(queryset=Ingredient.objects.all(), required=False)
+    ingredient = ModelChoiceField(queryset=Ingredient.objects.all().order_by('name'), required=False)
