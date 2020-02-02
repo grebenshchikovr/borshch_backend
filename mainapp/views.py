@@ -28,6 +28,7 @@ class RecipeList(ListView):
         query = self.request.GET.get('search')
         level = self.request.GET.get('level')
         duration = self.request.GET.get('duration')
+        ingredient_remove = self.request.GET.get('ingredient_remove')
         ingredient = self.request.GET.get('ingredient')
 
         # Фильтрация по сложности рецепта
@@ -47,14 +48,20 @@ class RecipeList(ListView):
             list = list.filter(duration__gte=60)
 
         #Исключить рецепты с заданным ингредиентом
-        if ingredient:
+        if ingredient_remove:
             for item in list:
-                compositions = Composition.objects.all().filter(ingredient__id=ingredient, recipe__id=item.id)
+                compositions = Composition.objects.all().filter(ingredient__id=ingredient_remove, recipe__id=item.id)
                 if compositions:
                     list = list.exclude(name=item.name)
 
-        return list
+        #Выбрать рецепты, включающие ингредиент.
+        if ingredient:
+            for item in list:
+                compositions = Composition.objects.all().filter(ingredient__id=ingredient, recipe__id=item.id)
+                if not compositions:
+                    list = list.exclude(name=item.name)
 
+        return list
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -72,10 +79,17 @@ class RecipeList(ListView):
             'duration': self.request.GET.get('duration', ''),
         })
         # Add in a QuerySet form to exclude ingredient
-        context['ingredient_form'] = RemoveIngredientFilterForm(initial={
+        context['ingredient_remove_form'] = RemoveIngredientFilterForm(initial={
+            'search': self.request.GET.get('search', ''),
+            'ingredient_remove': self.request.GET.get('ingredient_remove', ''),
+        })
+
+        # Add in a QuerySet form to filter ingredient
+        context['ingredient_form'] = IngredientFilterForm(initial={
             'search': self.request.GET.get('search', ''),
             'ingredient': self.request.GET.get('ingredient', ''),
         })
+
         return context
 
 
@@ -132,4 +146,8 @@ class DurationFilterForm(forms.Form):
 
 class RemoveIngredientFilterForm(forms.Form):
 
-    ingredient = forms.ModelChoiceField(label='Исключить ингредиент', queryset=Ingredient.objects.all().order_by('name'), required=False)
+    ingredient_remove = forms.ModelChoiceField(label='Исключить ингредиент', queryset=Ingredient.objects.all().order_by('name'), required=False)
+
+class IngredientFilterForm(forms.Form):
+
+    ingredient = forms.ModelChoiceField(label='Поиск по ингредиентам', queryset=Ingredient.objects.all().order_by('name'), required=False)

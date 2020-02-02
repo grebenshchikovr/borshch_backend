@@ -2,25 +2,42 @@
 
 <div class="filter-menu">
     <form action="">
+        <table>
+            <tr>
+                <td colspan="5">Время приготовления</td>
+            </tr>
+            <tr>
+            {% for radio in duration_form.duration %}
+                <td>
+                    <label for="{{ radio.id_for_label }}">
+                        {{ radio.tag }}
+                        <img class="symbol" src="{{ radio.choice_label|duration_pic }}" width="52">
+                    </label>
+                </td>
+            {% endfor %}
+            </tr>
+        </table>
 
-        {% for radio in duration_form.duration %}
-            <label for="{{ radio.id_for_label }}">
-                {{ radio.tag }}
-                <img class="symbol" src="{{ radio.choice_label|duration_pic }}" width="52">
-            </label>
-        {% endfor %}
+        <table>
+            <tr>
+                <td colspan="4">Сложность блюда</td>
+            </tr>
+            <tr>
+                {% for radio in level_form.level %}
+                    <td>
+                        <label for="{{ radio.id_for_label }}">
+                            {{ radio.tag }}
+                            <img class="symbol" src="{{ radio.choice_label|level_pic }}" width="52">
+                        </label>
+                    </td>
+                {% endfor %}
+            </tr>
+        </table>
 
         <hr>
 
-        {% for radio in level_form.level %}
-            <label for="{{ radio.id_for_label }}">
-                {{ radio.tag }}
-                <img class="symbol" src="{{ radio.choice_label|level_pic }}" width="52">
-            </label>
-        {% endfor %}
 
-        <hr>
-
+        {{ ingredient_remove_form.as_p }}
 
         {{ ingredient_form.as_p }}
 
