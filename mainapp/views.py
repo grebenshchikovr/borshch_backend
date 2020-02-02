@@ -24,6 +24,7 @@ class RecipeList(ListView):
     template_name = 'mainapp/recipes.html'
 
     def get_queryset(self):
+        list = super().get_queryset()
         query = self.request.GET.get('search')
         level = self.request.GET.get('level')
         duration = self.request.GET.get('duration')
@@ -32,8 +33,6 @@ class RecipeList(ListView):
         # Фильтрация по сложности рецепта
         if level:
             list = Recipe.objects.all().filter(level=level)
-        else:
-            list = Recipe.objects.all()
 
         #Фильтрация по длительности приготовления
         if not duration:
@@ -98,8 +97,9 @@ class RecipeDetailView(DetailView):
 class CuisineRecipeList(RecipeList):
 
     def get_queryset(self):
+        list = super().get_queryset()
         self.cuisine = get_object_or_404(Cuisine, name=self.kwargs['cuisine'])
-        return Recipe.objects.filter(cuisine=self.cuisine)
+        return list.filter(cuisine=self.cuisine)
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
