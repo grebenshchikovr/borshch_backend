@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from .models import Unit, Cuisine, Ingredient, Recipe, Composition, CookingStep
 from django.shortcuts import get_object_or_404
-from django.forms import forms, ChoiceField, ModelChoiceField
+from django import forms
 
 class MainView(ListView):
     model = Recipe
@@ -29,7 +29,7 @@ class RecipeList(ListView):
         duration = self.request.GET.get('duration')
         ingredient = self.request.GET.get('ingredient')
 
-        #Фильтрация по сложности рецепта
+        # Фильтрация по сложности рецепта
         if level:
             list = Recipe.objects.all().filter(level=level)
         else:
@@ -111,25 +111,25 @@ class CuisineRecipeList(RecipeList):
 
 class LevelFilterForm(forms.Form):
     level = (
-        (None, 'Сложность'),
-        ('1', 'Ребенок'),
-        ('2', 'Взрослый'),
-        ('3', 'Шеф-повар'),
+        (None, None),
+        (1, 1),
+        (2, 2),
+        (3, 3),
     )
 
-    level = ChoiceField(choices=level, label='level', required=False)
+    level = forms.CharField(label='level', widget=forms.RadioSelect(choices=level, attrs={'id': 'value'}),  required=False, initial='', )
 
 class DurationFilterForm(forms.Form):
-    FILTER_CHOICES = (
-        (None, 'Длительность'),
-        (15, '15 минут'),
-        (30, '30 минут'),
-        (60, '1 час'),
-        (61, '> часа'),
+    duration = (
+        (None, None),
+        (15, 15),
+        (30, 30),
+        (60, 60),
+        (61, 61),
     )
 
-    duration = ChoiceField(choices=FILTER_CHOICES, label='duration', required=False)
+    duration = forms.CharField(label='duration', widget=forms.RadioSelect(choices=duration, attrs={'id': 'value'}), required=False, initial=None)
 
 class RemoveIngredientFilterForm(forms.Form):
 
-    ingredient = ModelChoiceField(queryset=Ingredient.objects.all().order_by('name'), required=False)
+    ingredient = forms.ModelChoiceField(label='Исключить ингредиент', queryset=Ingredient.objects.all().order_by('name'), required=False)

@@ -62,9 +62,10 @@ def level_pic(level):
         level = 'adult'
     elif level == 3:
         level = 'chief'
-    else:
+    elif level == 1:
         level = 'child'
-
+    else:
+        level = 'none'
 
     return f'{settings.STATIC_URL}img/level_pic/{level}.png'
 
@@ -74,8 +75,9 @@ def duration_pic(duration):
     """
     заменяет уровень сложности рецепта на его картинку
     """
-
-    if duration <= 15:
+    if not duration:
+        duration ='none'
+    elif duration <= 15:
         duration = '15'
     elif duration > 15 and duration <=30:
         duration = '30'
@@ -86,8 +88,3 @@ def duration_pic(duration):
 
 
     return f'{settings.STATIC_URL}img/duration_pic/{duration}.png'
-
-"""
-def collect_url(string):
-    return re.sub(<.*>, WORKS, request.resolver_match.route, count=0)
-"""

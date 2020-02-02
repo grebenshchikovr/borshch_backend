@@ -1,11 +1,30 @@
-<form class="row">
-    {{ level_form.search }}
-    {{ level_form.level }}
-    {{ duration_form.search }}
-    {{ duration_form.duration }}
-    {{ ingredient_form.search }}
-    {{ ingredient_form.ingredient }}
-    <br>
-    <input type="submit" class="btn btn-default" value="Search">
+{% load my_tags %}
 
-</form>
+<div class="filter-menu">
+    <form action="">
+
+        {% for radio in duration_form.duration %}
+            <label for="{{ radio.id_for_label }}">
+                {{ radio.tag }}
+                <img class="symbol" src="{{ radio.choice_label|duration_pic }}" width="52">
+            </label>
+        {% endfor %}
+
+        <hr>
+
+        {% for radio in level_form.level %}
+            <label for="{{ radio.id_for_label }}">
+                {{ radio.tag }}
+                <img class="symbol" src="{{ radio.choice_label|level_pic }}" width="52">
+            </label>
+        {% endfor %}
+
+        <hr>
+
+
+        {{ ingredient_form.as_p }}
+
+        {% csrf_token %}
+        <input type="submit" value="Искать">
+    </form>
+</div>
