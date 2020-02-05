@@ -44,4 +44,10 @@
         {% csrf_token %}
         <input type="submit" value="Искать">
     </form>
+    <br>
+    <form action="">
+        {{ random_form.as_p }}
+        {% csrf_token %}
+        <input type="submit" value="Случайный рецепт">
+    </form>
 </div>

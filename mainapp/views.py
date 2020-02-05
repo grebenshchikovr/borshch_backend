@@ -30,6 +30,7 @@ class RecipeList(ListView):
         duration = self.request.GET.get('duration')
         ingredient_remove = self.request.GET.get('ingredient_remove')
         ingredient = self.request.GET.get('ingredient')
+        random = self.request.GET.get('random')
 
         # Фильтрация по сложности рецепта
         if level:
@@ -61,34 +62,39 @@ class RecipeList(ListView):
                 if not compositions:
                     list = list.exclude(name=item.name)
 
+        #Выбрать случайный рецепт.
+        if random:
+            list = list.order_by('?')[:1]
+
         return list
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
+
         # Add in a QuerySet of all the cuisines
         context['cuisine_list'] = Cuisine.objects.all()
+
         # Add in a QuerySet form to choose level of recipe
         context['level_form'] = LevelFilterForm(initial={
-            'search': self.request.GET.get('search', ''),
             'level': self.request.GET.get('level', ''),
         })
         # Add in a QuerySet form to choose duration of recipe
         context['duration_form'] = DurationFilterForm(initial={
-            'search': self.request.GET.get('search', ''),
             'duration': self.request.GET.get('duration', ''),
         })
         # Add in a QuerySet form to exclude ingredient
         context['ingredient_remove_form'] = RemoveIngredientFilterForm(initial={
-            'search': self.request.GET.get('search', ''),
             'ingredient_remove': self.request.GET.get('ingredient_remove', ''),
         })
 
         # Add in a QuerySet form to filter ingredient
         context['ingredient_form'] = IngredientFilterForm(initial={
-            'search': self.request.GET.get('search', ''),
             'ingredient': self.request.GET.get('ingredient', ''),
         })
+
+        # Add in a QuerySet form to choose random recipe
+        context['random_form'] = RandomRecipeForm(initial={'random': True})
 
         return context
 
@@ -151,3 +157,7 @@ class RemoveIngredientFilterForm(forms.Form):
 class IngredientFilterForm(forms.Form):
 
     ingredient = forms.ModelChoiceField(label='Поиск по ингредиентам', queryset=Ingredient.objects.all().order_by('name'), required=False)
+
+class RandomRecipeForm(forms.Form):
+
+    random = forms.CharField(widget=forms.HiddenInput())
