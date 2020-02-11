@@ -1,4 +1,5 @@
 {% extends 'mainapp/base.html' %}
+{% load static %}
 {% load my_tags %}
 
 
@@ -54,6 +55,11 @@
                             <td>{{ composition.ingredient.name }}</td>
                             <td>{{ composition.quantity }}</td>
                             <td>{{ composition.ingredient.unit.short_name }} </td>
+                            <td><div class="full_recipe_buy">
+                                <a href="https://www.ozon.ru/category/supermarket-25000/?text={{ composition.ingredient.name }}">
+                                    <img src="{% static 'img/bag.png' %}" width="32">
+                                </a>
+                            </div></td>
                         </tr>
                     {% endfor %}
                 </tbody>

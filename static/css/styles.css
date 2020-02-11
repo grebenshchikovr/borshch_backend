@@ -2,11 +2,14 @@
 
 
 .cuisine-menu {
-    background-color: rgba(255, 255, 255, 0.85);
+    width: 90%;
+    background-color: rgba(255, 229, 163, 0.85);
+    background: ;
+    margin: 0 auto;
 }
 .borshch-menu {
     position: relative;
-    width: 1400px;
+    width: 90%;
     height: 120px;
     margin: 0 auto;
     background-color: rgba(255, 227, 156, 0.85);
@@ -45,7 +48,7 @@
 }
 
 .container {
-
+    width: 90%;
 	margin: 0 auto;
 }
 
@@ -53,7 +56,7 @@
     margin-top: 50px;
     margin-bottom: 50px;
     border-radius: 30px;
-    width: 1110px;
+
 
 }
 
@@ -92,7 +95,6 @@
     color: #000000;
     background: #FFE5A3;
     border-radius: 0px 0px 30px 30px;
-    width: 540px;
 
 
 }
@@ -114,7 +116,7 @@
 }
 
 .full_recipe_card {
-    width: 1110px;
+
     background: white;
     font-family: Poiret One;
     font-style: normal;
@@ -128,17 +130,20 @@
     border-radius: 30px;
     margin: 20px;
 }
-.full_recipe_card img {
-    width: 400px;
-    border-radius: 30px;
-    margin: 20px;
-}
+
 
 .full_recipe_icons img{
     width: 52px;
     margin: 0 auto;
     margin-left: 15px;
     margin-right: 15px;
+}
+
+.full_recipe_buy img{
+    width: 32px;
+    margin: 0 auto;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .cookingstep img{
@@ -148,7 +153,69 @@
 }
 
 .card-header img {
-    width: 300px;
+
     border-radius: 30px;
     margin: 20px;
+}
+
+
+input[type=submit] {
+    width: 310px;
+    background: #FACA52;
+    border-radius: 10px;
+    font-family: Poiret One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+    color: black;
+}
+
+.filter-menu {
+    background: white;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    margin: 0 auto;
+
+}
+
+.filter-menu td{
+    width: 75px;
+    font-family: Poiret One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+
+.filter-menu-header {
+    background: #FFE5A3;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+
+
+.nav-item a{
+     color: black;
+}
+
+.box {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.float_left {
+
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10 px;
+
+    float: left;
+
+}
+
+.clear {
+    clear: both;
 }

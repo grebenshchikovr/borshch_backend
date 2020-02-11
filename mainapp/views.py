@@ -137,7 +137,7 @@ class LevelFilterForm(forms.Form):
         (3, 3),
     )
 
-    level = forms.CharField(label='level', widget=forms.RadioSelect(choices=level, attrs={'id': 'value'}),  required=False, initial='', )
+    level = forms.CharField(label='level', widget=forms.RadioSelect(choices=level, attrs={'id_l': 'value_l'}),  required=False, initial='', )
 
 class DurationFilterForm(forms.Form):
     duration = (
